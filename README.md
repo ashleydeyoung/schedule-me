@@ -10,7 +10,7 @@ SO THAT I can better accomodate the needs of clients.
 ```
 ## Table of Contents
 
-  * [Quiz Stack](#quiz-stack)
+  * [Schedule Me](#schedule-me)
   * [User Story](#user-story)
   * [Installation](#installation)
   * [Usage](#Usage)
