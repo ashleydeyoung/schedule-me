@@ -65,8 +65,7 @@ The following APIs were used in the development of this assignment.
 * **MomentJs API** - (https://momentjs.com/docs/)
 
 ## Image
-
-![quiz-stack](https://user-images.githubusercontent.com/61035701/84941802-e078cd00-b0af-11ea-8e78-26b7d132af23.png)
+![under-construction](https://user-images.githubusercontent.com/61035701/86263984-ec748c80-bb8f-11ea-8cf7-1bb74e78bd97.png)
 
 ## Deployed Application
 <a href="#">Schedule-Me</a>
