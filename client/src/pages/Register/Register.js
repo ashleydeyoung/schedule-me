@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 import API from '../../lib/API';
@@ -15,7 +16,7 @@ class Register extends Component {
 
     API.Users.create(email, password)
       .then(response => response.data)
-      .then(user => console.log(user))
+      .then(this.props.history.push('/login'))
       .catch(err => this.setState({ error: err.message }));
   }
 
@@ -45,4 +46,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

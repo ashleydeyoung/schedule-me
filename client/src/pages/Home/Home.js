@@ -1,25 +1,15 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
-
 class HomePage extends Component {
   render() {
     return (
       <div className='Home'>
         <div className='row'>
           <div className='col'>
-            <img src={logo} className='App-logo' alt='logo' />
+            <h1>Schedule-Me</h1>
             <p>
-              Edit <code>src/pages/Home.js</code> and save to reload.
+              Content to be place here.
             </p>
-            <a
-              className='App-link'
-              href='https://reactjs.org'
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
           </div>
         </div>
       </div>

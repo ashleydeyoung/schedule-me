@@ -1,17 +1,21 @@
 {
-  "name": "project-3-client",
+  "name": "schedule-me-client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@githubprimer/octicons-react": "^8.5.0",
-    "axios": "^0.18.1",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
     "react-gravatar": "^2.6.3",
-    "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.4.1"
+    "axios": "^0.19.2",
+    "ical-generator": "^1.11.0",
+    "passport": "^0.4.1",
+    "react": "^16.13.1",
+    "react-datepicker": "^3.0.0",
+    "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
+    "react-router": "^5.2.0",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
