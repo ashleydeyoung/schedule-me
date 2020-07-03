@@ -8,7 +8,8 @@ class HomePage extends Component {
           <div className='col'>
             <h1>Schedule-Me</h1>
             <p>
-              Content to be place here.
+              Welcome to Schedule-Me! <br></br>
+              Login or Register to get started.
             </p>
           </div>
         </div>
