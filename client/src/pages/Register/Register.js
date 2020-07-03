@@ -12,6 +12,8 @@ class Register extends Component {
   handleSubmit = (email, password, confirm) => {
     if (password !== confirm) {
       return this.setState({ error: "Passwords do not match." });
+    } else if (!email) {
+      return this.setState({ error: "Please enter an email."})
     }
 
     API.Users.create(email, password)
