@@ -9,14 +9,14 @@ class Register extends Component {
     error: ""
   }
 
-  handleSubmit = (email, password, confirm) => {
+  handleSubmit = (email, password, confirm, firstName, lastName, preferred) => {
     if (password !== confirm) {
       return this.setState({ error: "Passwords do not match." });
     } else if (!email) {
       return this.setState({ error: "Please enter an email."})
     }
 
-    API.Users.create(email, password)
+    API.Users.create(email, password, firstName, lastName, preferred)
       .then(response => response.data)
       .then(this.props.history.push('/login'))
       .catch(err => this.setState({ error: err.message }));
