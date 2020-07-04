@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
-import Octicon, { Mail, Key } from '@githubprimer/octicons-react';
+import Octicon, { Mail, Key, Person, Smiley } from '@githubprimer/octicons-react';
 
 class RegistrationForm extends Component {
   state = {
     email: '',
     password: '',
-    passwordConfirm: ''
+    passwordConfirm: '',
+    firstName: '',
+    lastName: '',
+    preferredName: ''
   };
 
   handleInputChange = event => {
@@ -18,20 +21,61 @@ class RegistrationForm extends Component {
   }
 
   handleSubmit = event => {
-    const { email, password, passwordConfirm } = this.state;
+    const { email, password, passwordConfirm, firstName, lastName, preferredName } = this.state;
 
-    this.props.onSubmit(email, password, passwordConfirm);
+    this.props.onSubmit(email, password, passwordConfirm, firstName, lastName, preferredName);
     event.preventDefault();
   }
 
   render() {
-    const { email, password, passwordConfirm } = this.state;
+    const { email, password, passwordConfirm, firstName, lastName, preferredName } = this.state;
 
     return (
       <div className='LoginForm'>
         <div className='card'>
           <div className='card-body'>
             <form onSubmit={this.handleSubmit}>
+
+              <div className='input-group mb-3'>
+                <div className="input-group-prepend">
+                  <span className="input-group-text"><Octicon icon={Person} /></span>
+                </div>
+                <input
+                  className='form-control'
+                  id='first-name'
+                  name='firstName'
+                  placeholder='First Name'
+                  value={firstName}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <div className='input-group mb-3'>
+                <div className="input-group-prepend">
+                  <span className="input-group-text"><Octicon icon={Person} /></span>
+                </div>
+                <input
+                  className='form-control'
+                  id='last-name'
+                  name='lastName'
+                  placeholder='Last Name'
+                  value={lastName}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <div className='input-group mb-3'>
+                <div className="input-group-prepend">
+                  <span className="input-group-text"><Octicon icon={Smiley} /></span>
+                </div>
+                <input
+                  className='form-control'
+                  id='preferred-name'
+                  name='preferredName'
+                  placeholder='Preferred Name'
+                  value={preferredName}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+
               <div className='input-group mb-3'>
                 <div className="input-group-prepend">
                   <span className="input-group-text"><Octicon icon={Mail} /></span>

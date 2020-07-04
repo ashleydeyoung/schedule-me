@@ -5,9 +5,9 @@ const { JWTVerifier } = require('../../lib/passport');
 const jwt = require('jsonwebtoken');
 
 usersController.post('/', (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, firstName, lastName, preferredName } = req.body;
 
-  db.User.create({ email, password })
+  db.User.create({ email, password, firstName, lastName, preferredName })
     .then(user => res.json(user))
     .catch(err => res.json(err));
 });
