@@ -13,6 +13,7 @@ import NotFound from '../../pages/NotFound/NotFound';
 
 import './App.css';
 import Options from '../Options/Options';
+import Footer from '../Footer/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class App extends Component {
             </Switch>
           </div>
         </div>
+        <Footer />
       </AuthContext.Provider>
     );
   }
