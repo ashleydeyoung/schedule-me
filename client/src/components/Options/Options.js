@@ -9,7 +9,7 @@ class Options extends Component {
                 <div className="card-body">
                     <p><Link to="/schedule/services" style={this.linkStyle}><span className="text-primary bold">Schedule</span> Appointment</Link></p>
                     <p><Link to="/appointments" style={this.linkStyle}><span className="text-secondary">View</span> Appointment(s)</Link></p>
-                    <img src="./assets/images/scissors.png" />
+                    <img src="./assets/images/scissors.png" alt="logo" />
                     <p><Link to="/availability" style={this.linkStyle}><span className="text-success">Check</span> Availability</Link></p>
                 </div>
                 <div className="card-footer">

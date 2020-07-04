@@ -5,12 +5,13 @@ import AuthContext from '../../contexts/AuthContext';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <AuthContext.Consumer>
-    {({ authToken }) => (
+    {({ authToken, user }) => (
       <Route
         {...rest}
-        render={props =>
-          authToken ? (
-            <Component {...props} />
+        render={props => {
+          if (Object.keys(rest).includes("page")) props.page = rest.page;
+          return authToken ? (
+            <Component {...props} user={user} />
           ) : (
               <Redirect
                 to={{
@@ -19,7 +20,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
                 }}
               />
             )
-        }
+        }}
       />
     )}
   </AuthContext.Consumer>

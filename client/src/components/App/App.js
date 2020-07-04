@@ -6,12 +6,13 @@ import TokenStore from '../../lib/TokenStore';
 import AuthContext from '../../contexts/AuthContext';
 import Navigation from '../../components/Navigation/Navigation';
 import PrivateRoute from '../../components/PrivateRoute/PrivateRoute';
-import Home from '../../pages/Home/Home';
+import Base from '../../components/Base/Base';
 import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
 import NotFound from '../../pages/NotFound/NotFound';
 
 import './App.css';
+import Options from '../Options/Options';
 
 class App extends Component {
   constructor(props) {
@@ -54,9 +55,9 @@ class App extends Component {
           <Navigation />
           <div className='container'>
             <Switch>
+              <PrivateRoute exact path='/' page={Options} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
-              <PrivateRoute path='/' component={Home} />
               <Route component={NotFound} />
             </Switch>
           </div>
