@@ -5,11 +5,13 @@ import moment from 'moment';
 
 class TimeSlotWrapper extends Component {
     state = {
-        timeSlots: []
+        timeSlots: [],
+        dateString: ""
     }
     async componentDidMount() {
-        const timeSlots = await API.Appointments.getAvailability(moment(this.props.appointment.startDate).format('yyyy-MM-DD'));
-        this.setState({timeSlots});
+        const dateString = moment(this.props.appointment.startDate).format('yyyy-MM-DD');
+        const timeSlots = await API.Appointments.getAvailability(dateString);
+        this.setState({timeSlots, dateString});
     }
 
     render() {
@@ -17,7 +19,7 @@ class TimeSlotWrapper extends Component {
             return (
                 <Fragment>
                     <div className="card-body">
-                        <h6>Below are the available time slots for today.</h6><br/>
+                        <h6>Below are the available time slots for <br/>{this.state.dateString}.</h6><br/>
                         {this.state.timeSlots.map(timeSlot => (<TimeSlot time={timeSlot.time} isAvailable={timeSlot.isAvailable} key={timeSlot.time} />))}
                     </div>
                     <div className="card-footer">
