@@ -11,7 +11,7 @@ class BasePage extends Component {
                         <p style={{ fontStyle: "italic" }}>Keepin' you styled!!!</p>
                         <div className="card text-center">
                             <div className="card-header">
-                                <h4>Welcome, {this.props.user?.preferredName}</h4>
+                                <h4>Welcome, <span className= "text-primary">{this.props.user?.preferredName}</span></h4>
                             </div>
                             <Page />
                         </div>
