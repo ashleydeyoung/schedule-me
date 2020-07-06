@@ -13,6 +13,7 @@ import NotFound from '../../pages/NotFound/NotFound';
 
 import './App.css';
 import Options from '../Options/Options';
+import TimeSlotWrapper from '../TimeSlot/TimeslotWrapper';
 import Footer from '../Footer/Footer';
 
 class App extends Component {
@@ -57,6 +58,7 @@ class App extends Component {
           <div className='container'>
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
+              <PrivateRoute exact path='/timeslots' page={TimeSlotWrapper} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />

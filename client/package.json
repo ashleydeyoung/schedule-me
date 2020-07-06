@@ -5,16 +5,17 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@githubprimer/octicons-react": "^8.5.0",
-    "react-gravatar": "^2.6.3",
-    "react-router-dom": "^5.0.1",
     "axios": "^0.19.2",
     "ical-generator": "^1.11.0",
+    "moment": "^2.27.0",
     "passport": "^0.4.1",
     "react": "^16.13.1",
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
+    "react-gravatar": "^2.6.3",
     "react-modal": "^3.11.2",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.4.1"
   },
   "scripts": {
