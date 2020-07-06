@@ -21,7 +21,7 @@ export default {
   },
   Appointments: {
     toDoubleDigits: (time) => time < 10 ? `0${time}` : time,
-    getAvailability: async function() {
+    getAvailability: async function(day) {
       const open = 9;
       const close = 17;
       const timeSlotInterval = 60;
@@ -35,7 +35,7 @@ export default {
         timeSlots.push({ time: `${hour}:${minutes}`, isAvailable: true });
       }
 
-      let response = await axios.get('/api/appointments');
+      let response = await axios.get('/api/appointments', {params: {day}});
       let appointments = response.data;
 
       let filledSlots = 0;

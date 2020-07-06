@@ -36,6 +36,11 @@ class App extends Component {
         authToken: TokenStore.getToken(),
         onLogin: this.handleLogin,
         onLogout: this.handleLogout
+      },
+      newAppointment: {
+        day: "2020-07-07",
+        services: [],
+        startTime: null,
       }
     }
   }
@@ -58,7 +63,7 @@ class App extends Component {
           <div className='container'>
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
-              <PrivateRoute exact path='/timeslots' page={TimeSlotWrapper} component={Base} />
+              <PrivateRoute exact path='/schedule/timeslots' page={TimeSlotWrapper} pageProps={{appointment: this.state.newAppointment}} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />

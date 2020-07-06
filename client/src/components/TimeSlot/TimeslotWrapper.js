@@ -4,7 +4,7 @@ import API from '../../lib/API';
 
 class TimeSlotWrapper extends Component {
     async componentDidMount() {
-        this.setState({timeSlots: await API.Appointments.getAvailability()});
+        this.setState({timeSlots: await API.Appointments.getAvailability(this.props.appointment.day)});
     }
 
     render() {

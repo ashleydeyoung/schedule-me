@@ -13,7 +13,7 @@ class BasePage extends Component {
                             <div className="card-header">
                                 <h4>Welcome, {this.props.user?.preferredName}</h4>
                             </div>
-                            <Page />
+                            <Page {...this.props.pageProps} />
                         </div>
                     </div>
                 </div>
