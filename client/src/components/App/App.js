@@ -15,6 +15,8 @@ import './App.css';
 import Options from '../Options/Options';
 import Footer from '../Footer/Footer';
 import Schedule from '../Schedule/Schedule';
+import Appointments from '../Appointments/Appointments'
+
 
 class App extends Component {
   constructor(props) {
@@ -59,6 +61,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
               <PrivateRoute exact path='/schedule' page={Schedule} component={Base} />
+              <PrivateRoute exact path='/appointments' page={Appointments} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />
