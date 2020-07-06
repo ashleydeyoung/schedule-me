@@ -39,7 +39,7 @@ class App extends Component {
         onLogout: this.handleLogout
       },
       newAppointment: {
-        day: "2020-07-07",
+        startDate: null,
         services: [],
         startTime: null,
       }
@@ -65,7 +65,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
               <PrivateRoute exact path='/schedule/timeslots' page={TimeSlotWrapper} pageProps={{appointment: this.state.newAppointment}} component={Base} />
-              <PrivateRoute exact path='/schedule' page={Schedule} component={Base} />
+              <PrivateRoute exact path='/schedule' page={Schedule} pageProps={{appointment: this.state.newAppointment}} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />

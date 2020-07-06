@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
 
 class TimeSlot extends Component {
-    time;
-    status;
-    timeSlotStyle;
-    textClass;
-    textStyle;
-    btnStyle;
+    state = {
+        time: null,
+        status: null,
+        timeSlotStyle: null,
+        textClass: null,
+        textStyle: null,
+        btnStyle: null,
+    }
 
     componentDidMount(){
-        this.time = this.props.time;
+        let newState = {
+            time: this.props.time
+        }
         if(this.props.isAvailable){
-            this.status = "Available";
-            this.timeSlotStyle = {backgroundColor:"#dae0e5"}
-            this.textClass = "text-success";
-            this.textStyle = {fontWeight:"bold"};
-            this.btnStyle = "";
+            newState.status = "Available";
+            newState.timeSlotStyle = {backgroundColor:"#dae0e5"}
+            newState.textClass = "text-success";
+            newState.textStyle = {fontWeight:"bold"};
+            newState.btnStyle = "";
         }else{
-            this.status = "Unavailable";
-            this.timeSlotStyle = {}
-            this.textClass = "";
-            this.textStyle = {};
-            this.btnStyle = "btn-secondary";  
+            newState.status = "Unavailable";
+            newState.timeSlotStyle = {}
+            newState.textClass = "";
+            newState.textStyle = {};
+            newState.btnStyle = "btn-secondary";  
         };
+
+        this.setState(newState);
     };
     
     render() {
         return (
-            <button type="button" className={`btn btn-sm btn-block rounded-pill ${this.btnStyle}`} style={this.timeSlotStyle}>{this.time} | 
-                <span className={this.textClass} style={this.textStyle}> {this.status}</span></button>
+            <button type="button" className={`btn btn-sm btn-block rounded-pill ${this.state.btnStyle}`} style={this.state.timeSlotStyle}>{this.state.time} | 
+                <span className={this.state.textClass} style={this.state.textStyle}> {this.state.status}</span></button>
         )
     }
 

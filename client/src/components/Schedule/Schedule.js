@@ -11,6 +11,7 @@ class Schedule extends Component {
     this.state = {
       startDate: new Date(),
     };
+    this.props.appointment.startDate = this.state.startDate;
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -18,9 +19,7 @@ class Schedule extends Component {
     this.setState({
       startDate: date,
     });
-    if (this.props.state?.startDate) {
-        this.props.state.startDate = date;
-    }
+    this.props.appointment.startDate = date;
   }
 
   render() {
