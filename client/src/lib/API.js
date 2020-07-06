@@ -18,4 +18,9 @@ export default {
       });
     }
   },
+  Appointments: {
+    getByClientId: function (clientID) {
+      return axios.get('/api/appointments', {params: { clientID }})
+    }
+  }
 }
