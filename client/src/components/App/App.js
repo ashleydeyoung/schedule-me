@@ -14,6 +14,7 @@ import NotFound from '../../pages/NotFound/NotFound';
 import './App.css';
 import Options from '../Options/Options';
 import Footer from '../Footer/Footer';
+import Schedule from '../Schedule/Schedule';
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class App extends Component {
           <div className='container'>
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
+              <PrivateRoute exact path='/schedule' page={Schedule} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />
