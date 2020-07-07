@@ -15,6 +15,8 @@ import './App.css';
 import Options from '../Options/Options';
 import Footer from '../Footer/Footer';
 import Schedule from '../Schedule/Schedule';
+import Services from '../Services/Services';
+
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +38,11 @@ class App extends Component {
         authToken: TokenStore.getToken(),
         onLogin: this.handleLogin,
         onLogout: this.handleLogout
+      },
+      newAppointment: {
+        startDate: null,
+        services: [],
+        startTime: null,
       }
     }
   }
@@ -58,7 +65,8 @@ class App extends Component {
           <div className='container'>
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
-              <PrivateRoute exact path='/schedule' page={Schedule} component={Base} />
+              <PrivateRoute exact path='/schedule/calendar' pageProps={{appointment: this.state.newAppointment}} page={Schedule} component={Base} />
+              <PrivateRoute exact path='/schedule/services' pageProps={{appointment: this.state.newAppointment}} page={Services} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />
