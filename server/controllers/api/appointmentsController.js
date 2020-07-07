@@ -14,18 +14,31 @@ appointmentController.get('/', async (req, res) => {
             }
         }));
     } else {
-        res.json(await db.Appointment.findAll());
+        const options = { include: db.Service };
+        if (req.query.clientID) {
+            options.where = { clientID: req.query.clientID }
+        }
+        res.json(await db.Appointment.findAll(options));
     }
 });
 
 appointmentController.post('/', async (req, res) => {
     const time = req.body.startTime.split(':');
     const startTime = moment(req.body.startDate).hour(time[0]).minute(time[1]);
-    const services = await db.Service.findAll({where: {id: {[Op.in] : req.body.services}}});
+    const services = await db.Service.findAll({ where: { id: { [Op.in]: req.body.services } } });
     const length = services.reduce((duration, service) => duration + Number(service.time), 0)
-    const newAppointment = await db.Appointment.create({startTime, length});
+    const newAppointment = await db.Appointment.create({ startTime, length });
     services.forEach(service => newAppointment.addService(service));
     res.sendStatus(204);
 });
+
+appointmentsController.delete("/:id", async (req, res) => {
+    const appointments = await db.Appointment.destroy({
+      where: {
+        id: req.params.id,
+      }
+    })
+    res.json(appointments);
+  })
 
 module.exports = appointmentController;

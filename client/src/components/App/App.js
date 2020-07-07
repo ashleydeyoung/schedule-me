@@ -16,6 +16,7 @@ import Options from '../Options/Options';
 import TimeSlotWrapper from '../TimeSlot/TimeslotWrapper';
 import Footer from '../Footer/Footer';
 import Schedule from '../Schedule/Schedule';
+import Appointments from '../Appointments/Appointments'
 import Services from '../Services/Services';
 
 
@@ -67,6 +68,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
               <PrivateRoute exact path='/schedule/timeslots' page={TimeSlotWrapper} pageProps={{appointment: this.state.newAppointment}} component={Base} />
+              <PrivateRoute exact path='/appointments' page={Appointments} component={Base} />
               <PrivateRoute exact path='/schedule/calendar' pageProps={{appointment: this.state.newAppointment}} page={Schedule} component={Base} />
               <PrivateRoute exact path='/schedule/services' pageProps={{appointment: this.state.newAppointment}} page={Services} component={Base} />
               <Route path='/login' component={Login} />
