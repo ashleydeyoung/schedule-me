@@ -9,33 +9,49 @@ class Appointments extends Component {
     appointments: [],
   };
   linkStyle = { color: "#000" };
+
   async componentDidMount() {
-      //console.log(this.props)
-    const appointments = await API.Appointments.getByClientId(this.props.user?.id);
+    const appointments = await API.Appointments.getByClientId(
+      this.props.user?.id
+    );
     this.setState({ appointments: appointments.data });
-    //console.log(appointments.data);
-    //console.log(this.state.appointments);
   }
+  cancelAppointment = async (id, e) => {
+    await API.Appointments.cancel(id);
+    alert("Your appointment has been cancelled!");
+
+    window.location.reload(false);
+  };
 
   render() {
     return (
       <Fragment>
-        <h2>Appointments</h2>
+        <h2 className="pt-4">Appointments</h2>
         <div className="card-body">
           {this.state.appointments.length === 0 && (
-            <h6 className="pb-2">
-              <span className="text-primary"></span>You currently have no
-              appointments.
-            </h6>
+            <Fragment>
+              <p className="pb-2">
+                You currently have{" "}
+                <span className="text-primary">no appointments.</span>
+              </p>
+              <p>
+                <img src="./assets/images/scissors.png" alt="logo" />
+              </p>
+
+              <p>
+                <Link to="/schedule/services" style={this.linkStyle}>
+                  <span className="text-primary bold">Schedule</span>{" "}
+                  Appointment
+                </Link>
+              </p>
+            </Fragment>
           )}
           {this.state.appointments.length > 0 && (
-            <AppointmentCard appointments={this.state.appointments} />
+            <AppointmentCard
+              appointments={this.state.appointments}
+              cancelAppointment={this.cancelAppointment}
+            />
           )}
-         {/*  <p>
-            <Link to="/schedule/services" style={this.linkStyle}>
-              <span className="text-primary bold">Schedule</span> Appointment
-            </Link>
-          </p> */}
         </div>
         <div className="card-footer">
           <div className="row">
@@ -47,7 +63,7 @@ class Appointments extends Component {
               />
               <LinkButton
                 label="Calendar"
-                redirectTo="/"
+                redirectTo="/schedule/calendar"
                 buttonStyle="btn-primary float-right"
               />
             </div>

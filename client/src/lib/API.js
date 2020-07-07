@@ -29,15 +29,18 @@ export default {
     getByClientId: function (clientID) {
       return axios.get("/api/appointments", { params: { clientID } });
     },
+    cancel: function (id) {
+      return axios.delete(`/api/appointments/${id}`);
+    }
+  },
 
-    Services: {
-      getServicesWithCategory: function () {
-        return axios.get("/api/services", {
-          params: {
-            withCategory: true,
-          },
-        });
-      },
+  Services: {
+    getServicesWithCategory: function () {
+      return axios.get("/api/services", {
+        params: {
+          withCategory: true,
+        },
+      });
     },
   },
 };
