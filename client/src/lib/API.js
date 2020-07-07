@@ -25,7 +25,6 @@ export default {
       const open = 9;
       const close = 17;
       const timeSlotInterval = 60;
-
       const timeSlots = [];
 
       // Generate timeslots from open to close
@@ -71,6 +70,7 @@ export default {
 
       return timeSlots;
     },
+    create: (appointment) => axios.post('/api/appointments', appointment)
   },
 
   Services: {
