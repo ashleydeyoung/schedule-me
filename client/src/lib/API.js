@@ -25,6 +25,7 @@ export default {
       });
     },
   },
+  
   Appointments: {
     toDoubleDigits: (time) => time < 10 ? `0${time}` : time,
     getAvailability: async function(day) {
