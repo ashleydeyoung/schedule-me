@@ -41,7 +41,7 @@ class Services extends Component {
     } else {
        this.state.selectedServices.delete(serviceId);
     }
-    console.log(this.props.state)
+    this.props.appointment.services = [...this.state.selectedServices];
   }
 
   render() {
