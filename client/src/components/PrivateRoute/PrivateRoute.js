@@ -10,6 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         {...rest}
         render={props => {
           if (Object.keys(rest).includes("page")) props.page = rest.page;
+          if (Object.keys(rest).includes("pageProps")) props.pageProps = rest.pageProps;
           return authToken ? (
             <Component {...props} user={user} />
           ) : (
