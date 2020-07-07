@@ -54,7 +54,9 @@ class TimeSlotWrapper extends Component {
     onClick = (clickedSlot) => {
         const timeSlots = this.state.timeSlots;
         this.setAvailibility(timeSlots);
-        clickedSlot.state = this.selectedState;
+        if(clickedSlot.isAvailable){
+            clickedSlot.state = this.selectedState;
+        }
         this.setState({ timeSlots: this.state.timeSlots });
         this.props.appointment.startTime = clickedSlot.time;
     }
