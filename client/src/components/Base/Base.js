@@ -21,7 +21,7 @@ class BasePage extends Component {
              </div>
       );
     } else {
-        return <div>loading...</div>
+        return <div>Loading...</div>
     }
   }
 }

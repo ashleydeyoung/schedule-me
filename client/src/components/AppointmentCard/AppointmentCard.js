@@ -9,11 +9,11 @@ function AppointmentCard(props) {
         className="appt-card"
         style={{ padding: "30px" }}
       >
-        {/* <h3>Appointment</h3> */}
+        <p><strong>{moment(appointment.startTime).format('LLLL')}</strong></p>
         {appointment.Services.map((Service) => (
           <p>{Service.name}</p>
         ))}
-        <p>{moment(appointment.startTime).format('MMMM Do YYYY, h:mm:ss a')}</p>
+        
       </div>
     );
   });

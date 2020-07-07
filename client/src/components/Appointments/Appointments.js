@@ -31,11 +31,11 @@ class Appointments extends Component {
           {this.state.appointments.length > 0 && (
             <AppointmentCard appointments={this.state.appointments} />
           )}
-          <p>
+         {/*  <p>
             <Link to="/schedule/services" style={this.linkStyle}>
               <span className="text-primary bold">Schedule</span> Appointment
             </Link>
-          </p>
+          </p> */}
         </div>
         <div className="card-footer">
           <div className="row">
@@ -43,7 +43,12 @@ class Appointments extends Component {
               <LinkButton
                 label="Home"
                 redirectTo="/"
-                buttonStyle="btn-secondary content-center"
+                buttonStyle="btn-secondary float-left"
+              />
+              <LinkButton
+                label="Calendar"
+                redirectTo="/"
+                buttonStyle="btn-primary float-right"
               />
             </div>
           </div>
