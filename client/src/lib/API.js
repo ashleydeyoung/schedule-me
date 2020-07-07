@@ -72,4 +72,14 @@ export default {
       return timeSlots;
     },
   },
+
+  Services: {
+    getServicesWithCategory: function () {
+      return axios.get('/api/services', {
+        params: {
+          withCategory: true
+        }
+      })
+    }
+  }
 }

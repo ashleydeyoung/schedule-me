@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@githubprimer/octicons-react": "^8.5.0",
+    "antd": "^4.4.1",
     "axios": "^0.19.2",
     "ical-generator": "^1.11.0",
     "moment": "^2.27.0",
