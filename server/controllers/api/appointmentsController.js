@@ -1,10 +1,10 @@
-const appointmentController = require('express').Router();
+const appointmentsController = require('express').Router();
 const moment = require('moment');
 
 const db = require('../../models');
 const { Op } = require('sequelize');
 
-appointmentController.get('/', async (req, res) => {
+appointmentsController.get('/', async (req, res) => {
     if (req.query.day) {
         res.json(await db.Appointment.findAll({
             where: {
@@ -22,7 +22,7 @@ appointmentController.get('/', async (req, res) => {
     }
 });
 
-appointmentController.post('/', async (req, res) => {
+appointmentsController.post('/', async (req, res) => {
     const time = req.body.startTime.split(':');
     const startTime = moment(req.body.startDate).hour(time[0]).minute(time[1]);
     const services = await db.Service.findAll({ where: { id: { [Op.in]: req.body.services } } });
@@ -41,4 +41,4 @@ appointmentsController.delete("/:id", async (req, res) => {
     res.json(appointments);
   })
 
-module.exports = appointmentController;
+module.exports = appointmentsController;

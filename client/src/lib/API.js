@@ -25,15 +25,6 @@ export default {
       });
     },
   },
-
-  Appointments: {
-    getByClientId: function (clientID) {
-      return axios.get("/api/appointments", { params: { clientID } });
-    },
-    cancel: function (id) {
-      return axios.delete(`/api/appointments/${id}`);
-    }
-  },
   Appointments: {
     toDoubleDigits: (time) => time < 10 ? `0${time}` : time,
     getAvailability: async function(day) {
@@ -85,7 +76,13 @@ export default {
 
       return timeSlots;
     },
-    create: (appointment) => axios.post('/api/appointments', appointment)
+    create: (appointment) => axios.post('/api/appointments', appointment),
+    getByClientId: function (clientID) {
+      return axios.get("/api/appointments", { params: { clientID } });
+    },
+    cancel: function (id) {
+      return axios.delete(`/api/appointments/${id}`);
+    }
   },
 
   Services: {
