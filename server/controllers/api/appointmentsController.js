@@ -27,7 +27,11 @@ appointmentsController.post('/', async (req, res) => {
     const startTime = moment(req.body.startDate).hour(time[0]).minute(time[1]);
     const services = await db.Service.findAll({ where: { id: { [Op.in]: req.body.services } } });
     const length = services.reduce((duration, service) => duration + Number(service.time), 0)
-    const newAppointment = await db.Appointment.create({ startTime, length });
+    const newAppointment = await db.Appointment.create({ startTime, length});
+    const clients = await db.User.findAll({where: {id: req.body.clientID}});
+
+    clients[0].addAppointment(newAppointment);
+    
     services.forEach(service => newAppointment.addService(service));
     res.sendStatus(204);
 });

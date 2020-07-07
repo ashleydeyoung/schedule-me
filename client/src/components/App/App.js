@@ -19,14 +19,14 @@ import Schedule from '../Schedule/Schedule';
 import Appointments from '../Appointments/Appointments'
 import Services from '../Services/Services';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.handleLogin = (user, authToken) => {
       TokenStore.setToken(authToken);
-      this.setState(prevState => ({ auth: { ...prevState.auth, user, authToken } }));
+      this.setState(prevState => ({ auth: { ...prevState.auth, user, authToken }
+                                  , newAppointment: { ...prevState.newAppointment, clientID: user.id } }));
     };
 
     this.handleLogout = () => {
@@ -45,6 +45,7 @@ class App extends Component {
         startDate: null,
         services: [],
         startTime: null,
+        clientID: null
       }
     }
   }
@@ -67,10 +68,10 @@ class App extends Component {
           <div className='container'>
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
-              <PrivateRoute exact path='/schedule/timeslots' page={TimeSlotWrapper} pageProps={{appointment: this.state.newAppointment}} component={Base} />
+              <PrivateRoute exact path='/schedule/timeslots' page={TimeSlotWrapper} pageProps={{ appointment: this.state.newAppointment }} component={Base} />
               <PrivateRoute exact path='/appointments' page={Appointments} component={Base} />
-              <PrivateRoute exact path='/schedule/calendar' pageProps={{appointment: this.state.newAppointment}} page={Schedule} component={Base} />
-              <PrivateRoute exact path='/schedule/services' pageProps={{appointment: this.state.newAppointment}} page={Services} component={Base} />
+              <PrivateRoute exact path='/schedule/calendar' pageProps={{ appointment: this.state.newAppointment }} page={Schedule} component={Base} />
+              <PrivateRoute exact path='/schedule/services' pageProps={{ appointment: this.state.newAppointment }} page={Services} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />
