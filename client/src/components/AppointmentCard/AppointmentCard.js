@@ -7,12 +7,12 @@ class AppointmentCard extends Component {
     <div className="card" style={{ padding: "30px" }}>
       {this.props.appointments.map((appointment) => {
         return (
-          <div className="card" style={{ padding: "30px", margin: "10px" }}>
+          <div className="card" style={{ padding: "30px", margin: "10px" }} key={appointment.id}>
             <p>
               <strong>{moment(appointment.startTime).format("LLLL")}</strong>
             </p>
             {appointment.Services.map((Service) => (
-              <p className= "text-primary">{Service.name}</p>
+              <p className= "text-primary" key={Service.id}>{Service.name}</p>
             ))}
             <button
               type="button"
