@@ -62,8 +62,8 @@ class Appointments extends Component {
                 buttonStyle="btn-secondary float-left"
               />
               <LinkButton
-                label="Calendar"
-                redirectTo="/schedule/calendar"
+                label="Services"
+                redirectTo="/schedule/services"
                 buttonStyle="btn-primary float-right"
               />
             </div>

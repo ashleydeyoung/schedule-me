@@ -10,7 +10,7 @@ class BasePage extends Component {
                         <div className='col'>
                             <h1>Hair-Did Stylists</h1>
                             <p style={{ fontStyle: "italic" }}>Keepin' you styled!!!</p>
-                            <div className="card text-center">
+                            <div className="card text-center" style={{ paddingBottom: "50px" }}>
                                 <div className="card-header">
                                     <h4>Welcome, <span className= "text-primary">{this.props.user?.preferredName}</span></h4>
                                 </div>
