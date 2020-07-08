@@ -32,4 +32,18 @@ usersController.post('/login', (req, res) => {
     });
 });
 
+usersController.put('/:id', JWTVerifier, async function (req, res) {
+  const result = await db.User.findOne({ where: { id: req.params.id } })
+  const result2 = await result.update({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    preferredName: req.body.preferredName,
+  })
+  req.login(result2, { session: false }, function (err) {
+    if (err) throw err;
+
+    res.json(result2)
+  })
+});
+
 module.exports = usersController;
