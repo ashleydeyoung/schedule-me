@@ -27,14 +27,17 @@ class App extends Component {
     this.handleLogin = (user, authToken) => {
       TokenStore.setToken(authToken);
       this.setState(prevState => ({
-        auth: { ...prevState.auth, user, authToken }
-        , newAppointment: { ...prevState.newAppointment, clientID: user.id }
+        auth: { ...prevState.auth, user, authToken },
+        newAppointment: { ...prevState.newAppointment, clientID: user.id }
       }));
     };
 
     this.handleLogout = () => {
       TokenStore.clearToken();
-      this.setState(prevState => ({ auth: { ...prevState.auth, user: undefined, authToken: undefined } }));
+      this.setState(prevState => ({
+        auth: { ...prevState.auth, user: undefined, authToken: undefined },
+        newAppointment: { ...prevState.newAppointment, clientID: undefined }
+      }));
     }
 
     this.state = {
@@ -59,7 +62,10 @@ class App extends Component {
 
     API.Users.getMe(authToken)
       .then(response => response.data)
-      .then(user => this.setState(prevState => ({ auth: { ...prevState.auth, user } })))
+      .then(user => this.setState(prevState => ({
+        auth: { ...prevState.auth, user },
+        newAppointment: { ...prevState.newAppointment, clientID: user.id }
+      })))
       .catch(err => console.log(err));
   }
 
@@ -71,8 +77,8 @@ class App extends Component {
           <div className='container'>
             <Switch>
               <PrivateRoute exact path='/' page={Options} component={Base} />
-              <PrivateRoute exact path='/schedule/timeslots' page={TimeSlotWrapper} pageProps={{ appointment: this.state.newAppointment }} component={Base} />
               <PrivateRoute exact path='/appointments' page={Appointments} component={Base} />
+              <PrivateRoute exact path='/schedule/timeslots' pageProps={{ appointment: this.state.newAppointment }} page={TimeSlotWrapper} component={Base} />
               <PrivateRoute exact path='/schedule/calendar' pageProps={{ appointment: this.state.newAppointment }} page={Schedule} component={Base} />
               <PrivateRoute exact path='/schedule/services' pageProps={{ appointment: this.state.newAppointment }} page={Services} component={Base} />
               <PrivateRoute exact path='/update' pageProps={{ authToken: this.state.auth.authToken, handleLogin: this.handleLogin }} component={Update} />
