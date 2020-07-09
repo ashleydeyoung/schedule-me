@@ -10,7 +10,7 @@ var JWT_STRATEGY_OPTS = {
 
 passport.use(
   new JwtStrategy(JWT_STRATEGY_OPTS, function (jwtPayload, done) {
-    db.User.findByPk(jwtPayload.sub)
+    db.User.findByPk(jwtPayload.sub, {include: [{model: db.Role}]})
       .then(user => done(null, user || false))
       .catch(err => done(err, false));
   })
