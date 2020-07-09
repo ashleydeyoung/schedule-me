@@ -7,6 +7,7 @@ import AppointmentCard from "./AppointmentCard";
 class Appointments extends Component {
   state = {
     appointments: [],
+    addModalShow: false
   };
   linkStyle = { color: "#000" };
 
@@ -15,11 +16,11 @@ class Appointments extends Component {
       this.props.user?.id
     );
     this.setState({ appointments: appointments.data });
-  }
+  };
+
   cancelAppointment = async (id, e) => {
     await API.Appointments.cancel(id);
-    alert("Your appointment has been cancelled!");
-
+    
     window.location.reload(false);
   };
 
@@ -37,7 +38,6 @@ class Appointments extends Component {
               <p>
                 <img src="./assets/images/scissors.png" alt="logo" />
               </p>
-
               <p>
                 <Link to="/schedule/services" style={this.linkStyle}>
                   <span className="text-primary bold">Schedule</span>{" "}
