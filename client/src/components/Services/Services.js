@@ -9,7 +9,7 @@ const { Panel } = Collapse;
 class Services extends Component {
   state = {
     serviceCategories: [],
-    selectedServices: new Set()
+    selectedServices: new Set(),
   };
 
   async componentDidMount() {
@@ -39,7 +39,7 @@ class Services extends Component {
     if (selected) {
       this.state.selectedServices.add(serviceId);
     } else {
-       this.state.selectedServices.delete(serviceId);
+      this.state.selectedServices.delete(serviceId);
     }
     this.props.appointment.services = [...this.state.selectedServices];
   }
@@ -59,15 +59,18 @@ class Services extends Component {
                     header={serviceCategory.category.name}
                     key={serviceCategory.category.id}
                   >
-                    {serviceCategory.services.map((service) => (
-                      <Form.Item
-                        valuePropName="checked"
-                        name={service.id}
-                        key={service.id}
-                      >
-                        <Checkbox>{service.name}</Checkbox>
-                      </Form.Item>
-                    ))}
+                    {serviceCategory.services.map((service) => {
+                      return (
+                        <Form.Item
+                          valuePropName="checked"
+                          name={service.id}
+                          key={service.id}
+                          initialValue={this.props.appointment.services.includes(service.id.toString())}
+                        >
+                          <Checkbox>{service.name}</Checkbox>
+                        </Form.Item>
+                      )
+                    })}
                   </Panel>
                 );
               })}

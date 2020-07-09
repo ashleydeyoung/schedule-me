@@ -9,7 +9,7 @@ class Schedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date(),
+      startDate: this.props.appointment.startDate || new Date(),
     };
     this.props.appointment.startDate = this.state.startDate;
     this.handleChange = this.handleChange.bind(this);

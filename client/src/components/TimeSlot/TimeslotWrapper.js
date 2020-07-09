@@ -38,6 +38,11 @@ class TimeSlotWrapper extends Component {
         const dateString = moment(this.props.appointment.startDate).format('yyyy-MM-DD');
         const timeSlots = await API.Appointments.getAvailability(dateString);
         this.setAvailibility(timeSlots);
+        timeSlots.forEach(timeSlot => {
+            if(timeSlot.time === this.props.appointment.startTime){
+                timeSlot.state = this.selectedState;
+            }
+        })
         this.setState({ timeSlots, dateString });
     }
 
