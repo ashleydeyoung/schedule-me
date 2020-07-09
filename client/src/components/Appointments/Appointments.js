@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import LinkButton from "../Button/LinkButton";
 import { Link } from "react-router-dom";
 import API from "../../lib/API";
-import AppointmentCard from "../AppointmentCard/AppointmentCard";
+import AppointmentCard from "./AppointmentCard";
 
 class Appointments extends Component {
   state = {
@@ -26,8 +26,8 @@ class Appointments extends Component {
   render() {
     return (
       <Fragment>
-        <h2 className="pt-4">Appointments</h2>
-        <div className="card-body">
+        <h6 className="pt-4 pb-3"><span className="text-primary">Scheduled</span> Appointments</h6>
+        <div className="card-body pt-0">
           {this.state.appointments.length === 0 && (
             <Fragment>
               <p className="pb-2">
@@ -47,10 +47,12 @@ class Appointments extends Component {
             </Fragment>
           )}
           {this.state.appointments.length > 0 && (
-            <AppointmentCard
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+              <AppointmentCard
               appointments={this.state.appointments}
               cancelAppointment={this.cancelAppointment}
             />
+            </div>
           )}
         </div>
         <div className="card-footer">
@@ -59,12 +61,7 @@ class Appointments extends Component {
               <LinkButton
                 label="Home"
                 redirectTo="/"
-                buttonStyle="btn-secondary float-left"
-              />
-              <LinkButton
-                label="Services"
-                redirectTo="/schedule/services"
-                buttonStyle="btn-primary float-right"
+                buttonClass="btn-secondary"
               />
             </div>
           </div>

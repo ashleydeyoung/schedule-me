@@ -41,12 +41,12 @@ class Schedule extends Component {
               <LinkButton
                 label="Services"
                 redirectTo="/schedule/services"
-                buttonStyle="btn-secondary float-left"
+                buttonClass="btn-secondary float-left"
               />
               <LinkButton
                 label="Schedule"
                 redirectTo="/schedule/timeslots"
-                buttonStyle="btn-primary float-right"
+                buttonClass="btn-primary float-right"
               />
             </div>
           </div>

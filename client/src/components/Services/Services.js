@@ -80,12 +80,12 @@ class Services extends Component {
               <LinkButton
                 label="Home"
                 redirectTo="/"
-                buttonStyle="btn-secondary float-left"
+                buttonClass="btn-secondary float-left"
               />
               <LinkButton
                 label="Calendar"
                 redirectTo="/schedule/calendar"
-                buttonStyle="btn-primary float-right"
+                buttonClass="btn-primary float-right"
               />
             </div>
           </div>
