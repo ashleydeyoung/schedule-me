@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LinkButton from '../Button/LinkButton';
 import Octicon, { Person, Smiley } from '@githubprimer/octicons-react';
+import UpdateModal from '../Modal/UpdateModal'
 
 import API from '../../lib/API';
 
@@ -9,7 +10,8 @@ class Update extends Component {
         firstName: '',
         lastName: '',
         preferredName: '',
-        id: ''
+        id: '',
+        updateModalShow: false
     };
 
     componentDidMount() {
@@ -19,8 +21,7 @@ class Update extends Component {
     updateUser = async () => {
         const user = await API.Users.update(this.state, this.props.pageProps.authToken);
         this.props.pageProps.handleLogin(user.data, this.props.pageProps.authToken)
-        alert("Your information has been updated!")
-        window.location = "/"
+        this.setState({ updateModalShow: true })
     }
 
     handleInputChange = event => {
@@ -37,88 +38,91 @@ class Update extends Component {
         this.props.onSubmit(email, password, passwordConfirm, firstName, lastName, preferredName);
         event.preventDefault();
     }
+
     render() {
-      const { firstName, lastName, preferredName } = this.state;
-      return (
-        <div className="UpdateForm">
-          <div className="card">
+        const { firstName, lastName, preferredName } = this.state;
+        return (
+
             <div className="card-body">
-              <h6 className="pb-2">
-                <span className="text-primary">Update</span> your info:
-              </h6>
-              <form onSubmit={this.handleSubmit}>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <Octicon icon={Person} />
-                    </span>
-                  </div>
-                  <input
-                    className="form-control"
-                    id="first-name"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <Octicon icon={Person} />
-                    </span>
-                  </div>
-                  <input
-                    className="form-control"
-                    id="last-name"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <Octicon icon={Smiley} />
-                    </span>
-                  </div>
-                  <input
-                    className="form-control"
-                    id="preferred-name"
-                    name="preferredName"
-                    placeholder="Preferred Name"
-                    value={preferredName}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                  <hr/>
-                  <p>Give us your <a className="text-primary" href="/feedback">feedback</a></p>
-                  <img src="./assets/images/scissors.png" alt="logo" />
-                <div className="card-footer">
-                  <div className="row">
-                    <div className="col-8 offset-2">
-                      <LinkButton
-                        label="Home"
-                        redirectTo="/"
-                        buttonClass="btn-secondary float-left"
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-primary float-right"
-                        onClick={this.updateUser}
-                      >
-                        Save 
-                      </button>
+                <h6 className="pb-2">
+                    <span className="text-primary">Update</span> your info:
+                </h6>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">
+                                <Octicon icon={Person} />
+                            </span>
+                        </div>
+                        <input
+                            className="form-control"
+                            id="first-name"
+                            name="firstName"
+                            placeholder="First Name"
+                            value={firstName}
+                            onChange={this.handleInputChange}
+                        />
                     </div>
-                  </div>
-                </div>
-              </form>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">
+                                <Octicon icon={Person} />
+                            </span>
+                        </div>
+                        <input
+                            className="form-control"
+                            id="last-name"
+                            name="lastName"
+                            placeholder="Last Name"
+                            value={lastName}
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">
+                                <Octicon icon={Smiley} />
+                            </span>
+                        </div>
+                        <input
+                            className="form-control"
+                            id="preferred-name"
+                            name="preferredName"
+                            placeholder="Preferred Name"
+                            value={preferredName}
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <hr />
+                    <p>Give us your <a className="text-primary" href="/feedback">feedback</a></p>
+                    <img src="./assets/images/scissors.png" alt="logo" />
+                    <div className="card-footer">
+                        <div className="row">
+                            <div className="col-8 offset-2">
+                                <LinkButton
+                                    label="Home"
+                                    redirectTo="/"
+                                    buttonClass="btn-secondary float-left"
+                                />
+                                <button
+                                    type="button"
+                                    className="btn btn-primary float-right"
+                                    onClick={this.updateUser}
+                                >
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <UpdateModal
+                    show={this.state.updateModalShow}
+                    onHide={() => { this.setState({ updateModalShow: false }); window.location = '/' }}
+                    updateUser={() => this.props.updateUser()}
+                />
             </div>
-          </div>
-        </div>
-      );
+        );
     }
-  }
+}
 
 export default Update;

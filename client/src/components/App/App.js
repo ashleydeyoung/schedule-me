@@ -81,7 +81,7 @@ class App extends Component {
               <PrivateRoute exact path='/schedule/timeslots' pageProps={{ appointment: this.state.newAppointment }} page={TimeSlotWrapper} component={Base} />
               <PrivateRoute exact path='/schedule/calendar' pageProps={{ appointment: this.state.newAppointment }} page={Schedule} component={Base} />
               <PrivateRoute exact path='/schedule/services' pageProps={{ appointment: this.state.newAppointment }} page={Services} component={Base} />
-              <PrivateRoute exact path='/update' pageProps={{ authToken: this.state.auth.authToken, handleLogin: this.handleLogin }} component={Update} />
+              <PrivateRoute exact path='/update' pageProps={{ authToken: this.state.auth.authToken, handleLogin: this.handleLogin }} page={Update} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />
