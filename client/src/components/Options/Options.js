@@ -18,11 +18,11 @@ class Options extends Component {
             </Link>
           </p>
           <img src="./assets/images/scissors.png" alt="logo" />
-          <p>
+          {/* <p>
             <Link to="/availability" style={this.linkStyle}>
               <span className="text-success">Check</span> Availability
             </Link>
-          </p>
+          </p> */}
         </div>
         <div className="card-footer">&nbsp;</div>
       </Fragment>

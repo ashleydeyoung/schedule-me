@@ -90,7 +90,7 @@ class Update extends Component {
                                         <LinkButton
                                             label='Home'
                                             redirectTo='/'
-                                            buttonStyle='btn-secondary float-left'
+                                            buttonClass='btn-secondary float-left'
                                         />
                                         <button
                                             type="button"
