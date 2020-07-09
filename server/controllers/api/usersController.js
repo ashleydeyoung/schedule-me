@@ -3,6 +3,7 @@ const usersController = require('express').Router();
 const db = require('../../models');
 const { JWTVerifier } = require('../../lib/passport');
 const jwt = require('jsonwebtoken');
+const { use } = require('passport');
 
 usersController.post('/', (req, res) => {
   const { email, password, firstName, lastName, preferredName } = req.body;
@@ -19,7 +20,7 @@ usersController.get('/me', JWTVerifier, (req, res) => {
 usersController.post('/login', (req, res) => {
   const { email, password } = req.body;
 
-  db.User.findOne({ where: { email } })
+  db.User.findOne({ where: { email }, include: [{ model:db.Role }] })
     .then(user => {
       if (!user || !user.comparePassword(password)) {
         return res.status(401).send("Unauthorized");
@@ -44,6 +45,11 @@ usersController.put('/:id', JWTVerifier, async function (req, res) {
 
     res.json(result2)
   })
+});
+
+usersController.get('/:id', async function (req, res){
+  const User = await db.User.findByPk(req.params.id, {include: [{model: db.Role}]});
+  res.json(User);
 });
 
 module.exports = usersController;

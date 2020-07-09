@@ -4,6 +4,7 @@ class BasePage extends Component {
     render() {
         let Page = this.props.page;
         if (this.props.user) {
+            console.log(this.props.user)
             return (
                 <div className='Home'>
                     <div className='row'>
