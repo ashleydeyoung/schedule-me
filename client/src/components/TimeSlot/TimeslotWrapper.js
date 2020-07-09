@@ -86,7 +86,7 @@ class TimeSlotWrapper extends Component {
                                 <LinkButton
                                     label="Calendar"
                                     redirectTo="/schedule/calendar"
-                                    buttonStyle="btn-secondary float-left"
+                                    buttonClass="btn-secondary float-left"
                                 />
                                 <button className="btn btn-default btn-primary float-right" onClick={this.submit}>Submit</button>
                             </div>
