@@ -38,76 +38,87 @@ class Update extends Component {
         event.preventDefault();
     }
     render() {
-        const { firstName, lastName, preferredName } = this.state;
-        return (
-            <div className='UpdateForm'>
-                <div className='card'>
-                    <div className='card-body'>
-                        <form onSubmit={this.handleSubmit}>
-
-                            <div className='input-group mb-3'>
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text"><Octicon icon={Person} /></span>
-                                </div>
-                                <input
-                                    className='form-control'
-                                    id='first-name'
-                                    name='firstName'
-                                    placeholder='First Name'
-                                    value={firstName}
-                                    onChange={this.handleInputChange}
-                                />
-                            </div>
-                            <div className='input-group mb-3'>
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text"><Octicon icon={Person} /></span>
-                                </div>
-                                <input
-                                    className='form-control'
-                                    id='last-name'
-                                    name='lastName'
-                                    placeholder='Last Name'
-                                    value={lastName}
-                                    onChange={this.handleInputChange}
-                                />
-                            </div>
-                            <div className='input-group mb-3'>
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text"><Octicon icon={Smiley} /></span>
-                                </div>
-                                <input
-                                    className='form-control'
-                                    id='preferred-name'
-                                    name='preferredName'
-                                    placeholder='Preferred Name'
-                                    value={preferredName}
-                                    onChange={this.handleInputChange}
-                                />
-                            </div>
-                            <div className="card-footer">
-                                <div className="row">
-                                    <div className="col-8 offset-2">
-                                        <LinkButton
-                                            label='Home'
-                                            redirectTo='/'
-                                            buttonClass='btn-secondary float-left'
-                                        />
-                                        <button
-                                            type="button"
-                                            className="btn btn-primary float-right"
-                                            onClick={this.updateUser}
-                                        >
-                                            Save Changes
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+      const { firstName, lastName, preferredName } = this.state;
+      return (
+        <div className="UpdateForm">
+          <div className="card">
+            <div className="card-body">
+              <h6 className="pb-2">
+                <span className="text-primary">Update</span> your info:
+              </h6>
+              <form onSubmit={this.handleSubmit}>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <Octicon icon={Person} />
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    id="first-name"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={this.handleInputChange}
+                  />
                 </div>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <Octicon icon={Person} />
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    id="last-name"
+                    name="lastName"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <Octicon icon={Smiley} />
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    id="preferred-name"
+                    name="preferredName"
+                    placeholder="Preferred Name"
+                    value={preferredName}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                  <hr/>
+                  <p>Give us your <a className="text-primary" href="/feedback">feedback</a></p>
+                  <img src="./assets/images/scissors.png" alt="logo" />
+                <div className="card-footer">
+                  <div className="row">
+                    <div className="col-8 offset-2">
+                      <LinkButton
+                        label="Home"
+                        redirectTo="/"
+                        buttonClass="btn-secondary float-left"
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-primary float-right"
+                        onClick={this.updateUser}
+                      >
+                        Save 
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
-        );
+          </div>
+        </div>
+      );
     }
-}
+  }
 
 export default Update;
