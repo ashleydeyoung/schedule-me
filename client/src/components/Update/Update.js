@@ -19,8 +19,8 @@ class Update extends Component {
     }
 
     updateUser = async () => {
-        const user = await API.Users.update(this.state, this.props.pageProps.authToken);
-        this.props.pageProps.handleLogin(user.data, this.props.pageProps.authToken)
+        const user = await API.Users.update(this.state, this.props.authToken);
+        this.props.handleLogin(user.data, this.props.authToken)
         this.setState({ updateModalShow: true })
     }
 
