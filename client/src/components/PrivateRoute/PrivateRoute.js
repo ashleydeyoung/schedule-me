@@ -11,7 +11,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         render={props => {
           if (Object.keys(rest).includes("page")) props.page = rest.page;
           if (Object.keys(rest).includes("pageProps")) props.pageProps = rest.pageProps;
-          return authToken ? (
+
+          const authorized = (!rest.authorizedRole || user?.hasRole(rest.authorizedRole))
+          return (authToken && authorized) ? (
             <Component {...props} user={user} />
           ) : (
               <Redirect

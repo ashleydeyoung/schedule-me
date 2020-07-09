@@ -20,6 +20,6 @@ module.exports = (sequelize, DataTypes) => {
   User.prototype.comparePassword = function (challenge) {
     return this.password === challenge;
   }
-
+  
   return User;
 };
