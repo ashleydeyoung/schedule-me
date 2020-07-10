@@ -6,7 +6,7 @@ A simple scheduling application using learned subject matter from a Full Stack D
 ```
 AS A user,
 I WANT a scheduler application,
-SO THAT I can better accomodate the needs of clients.
+SO THAT I can better accommodate  the needs of clients.
 ```
 ## Table of Contents
 
@@ -35,7 +35,7 @@ npm run start
 ## Motivation
 Schedule-Me is inspired by the current pandemic known as COVID-19. As a potential business owner, I see there are new
 requirements for businesses regarding the safety of both employees and clients. The nature of this application is to allow clients
-to view, request and confirm appointments by viewing availabilty of a given business or contractor. 
+to view, request and confirm appointments by viewing availability of a given business or contractor. 
 With hope of omitting or limiting the number of patrons and exposure time in what is normally considered "waiting areas", we believe there will be a better chance of reducing infection rates.
 
 
