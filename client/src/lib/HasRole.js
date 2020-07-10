@@ -1,4 +1,4 @@
-export default function (title) {
-    if (!title || !this.Roles) return false;
-    return this.Roles.some(role => role.title.toLowerCase() === title.toLowerCase());
+export default function (title, roles) {
+    if (!title || !roles) return false;
+    return roles.some(role => role.title.toLowerCase() === title.toLowerCase());
   }

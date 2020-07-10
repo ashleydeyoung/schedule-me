@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import hasRole from '../../lib/HasRole';
 
 import AuthContext from '../../contexts/AuthContext';
 
@@ -12,7 +13,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
           if (Object.keys(rest).includes("page")) props.page = rest.page;
           if (Object.keys(rest).includes("pageProps")) props.pageProps = rest.pageProps;
 
-          const authorized = (!rest.authorizedRole || user?.hasRole(rest.authorizedRole))
+          const authorized = (!rest.authorizedRole || hasRole(rest.authorizedRole, user?.Roles))
           return (authToken && authorized) ? (
             <Component {...props} user={user} />
           ) : (

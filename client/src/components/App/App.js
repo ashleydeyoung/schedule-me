@@ -20,7 +20,6 @@ import Appointments from '../Appointments/Appointments'
 import Services from '../Services/Services';
 import Update from '../Update/Update';
 import Admin from '../Admin/Admin';
-import hasRole from '../../lib/HasRole';
 import Feedback from '../Feedback/Feedback';
 
 class App extends Component {
@@ -29,7 +28,6 @@ class App extends Component {
 
     this.handleLogin = (user, authToken) => {
       TokenStore.setToken(authToken);
-      user.hasRole = hasRole;
       this.setState(prevState => ({
         auth: { ...prevState.auth, user, authToken },
         newAppointment: { ...prevState.newAppointment, clientID: user.id }
@@ -67,7 +65,6 @@ class App extends Component {
     API.Users.getMe(authToken)
       .then(response => response.data)
       .then(user => {
-        user.hasRole = hasRole;
         this.setState(prevState => ({
           auth: { ...prevState.auth, user },
           newAppointment: { ...prevState.newAppointment, clientID: user.id }
