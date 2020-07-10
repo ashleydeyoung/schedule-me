@@ -3,7 +3,6 @@ const usersController = require('express').Router();
 const db = require('../../models');
 const { JWTVerifier } = require('../../lib/passport');
 const jwt = require('jsonwebtoken');
-const { use } = require('passport');
 
 usersController.post('/', (req, res) => {
   const { email, password, firstName, lastName, preferredName } = req.body;
@@ -49,6 +48,11 @@ usersController.put('/:id', JWTVerifier, async function (req, res) {
 
 usersController.get('/:id', async function (req, res){
   const User = await db.User.findByPk(req.params.id, {include: [{model: db.Role}]});
+  res.json(User);
+});
+
+usersController.get('/', async function (req, res){
+  const User = await db.User.findAll({include: [{model: db.Role}]});
   res.json(User);
 });
 

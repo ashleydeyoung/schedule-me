@@ -20,19 +20,15 @@ import Appointments from '../Appointments/Appointments'
 import Services from '../Services/Services';
 import Update from '../Update/Update';
 import Admin from '../Admin/Admin';
+import hasRole from '../../lib/HasRole';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.checkUserRole = function (title) {
-      if (!title || !this.Roles) return false;
-      return this.Roles.some(role => role.title.toLowerCase() === title.toLowerCase());
-    }
-
     this.handleLogin = (user, authToken) => {
       TokenStore.setToken(authToken);
-      user.hasRole = this.checkUserRole;
+      user.hasRole = hasRole;
       this.setState(prevState => ({
         auth: { ...prevState.auth, user, authToken },
         newAppointment: { ...prevState.newAppointment, clientID: user.id }
@@ -70,7 +66,7 @@ class App extends Component {
     API.Users.getMe(authToken)
       .then(response => response.data)
       .then(user => {
-        user.hasRole = this.checkUserRole;
+        user.hasRole = hasRole;
         this.setState(prevState => ({
           auth: { ...prevState.auth, user },
           newAppointment: { ...prevState.newAppointment, clientID: user.id }

@@ -31,6 +31,10 @@ export default {
           Authorization: `Bearer ${authToken}`,
         },
       })
+    },
+
+    getAll: function() {
+      return axios.get('/api/users');
     }
   },
   
@@ -103,4 +107,10 @@ export default {
       });
     },
   },
+
+  Roles: {
+    getAll: function() {
+      return axios.get('/api/roles');
+    }
+  }
 };
