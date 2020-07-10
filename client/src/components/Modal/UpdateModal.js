@@ -12,7 +12,7 @@ class UpdateModal extends Component {
                 <Modal.Header closeButton onClick={this.props.onHide}>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Your information has been updated!</p>
+                    {this.props.children}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn-primary" onClick={this.props.onHide}>

@@ -118,8 +118,9 @@ class Update extends Component {
                 <UpdateModal
                     show={this.state.updateModalShow}
                     onHide={() => { this.setState({ updateModalShow: false }); window.location = '/' }}
-                    updateUser={() => this.props.updateUser()}
-                />
+                >
+                    <p>Your information has been updated!</p>
+                </UpdateModal >
             </div>
         );
     }
