@@ -19,6 +19,7 @@ import Schedule from '../Schedule/Schedule';
 import Appointments from '../Appointments/Appointments'
 import Services from '../Services/Services';
 import Update from '../Update/Update';
+import Feedback from '../Feedback/Feedback';
 
 class App extends Component {
   constructor(props) {
@@ -82,6 +83,7 @@ class App extends Component {
               <PrivateRoute exact path='/schedule/calendar' pageProps={{ appointment: this.state.newAppointment }} page={Schedule} component={Base} />
               <PrivateRoute exact path='/schedule/services' pageProps={{ appointment: this.state.newAppointment }} page={Services} component={Base} />
               <PrivateRoute exact path='/update' pageProps={{ authToken: this.state.auth.authToken, handleLogin: this.handleLogin }} page={Update} component={Base} />
+              <PrivateRoute exact path='/feedback' page={Feedback} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
               <Route component={NotFound} />
