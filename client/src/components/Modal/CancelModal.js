@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-class CenteredModal extends Component {
+class CancelModal extends Component {
   render() {
     return (
       <Modal
@@ -31,4 +31,4 @@ class CenteredModal extends Component {
   }
 }
 
-export default CenteredModal;
+export default CancelModal;

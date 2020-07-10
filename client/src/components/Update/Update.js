@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LinkButton from '../Button/LinkButton';
 import Octicon, { Person, Smiley } from '@githubprimer/octicons-react';
-import UpdateModal from '../Modal/UpdateModal'
+import OkModal from '../Modal/OkModal'
 
 import API from '../../lib/API';
 
@@ -115,12 +115,12 @@ class Update extends Component {
                         </div>
                     </div>
                 </form>
-                <UpdateModal
+                <OkModal
                     show={this.state.updateModalShow}
                     onHide={() => { this.setState({ updateModalShow: false }); window.location = '/' }}
                 >
                     <p>Your information has been updated!</p>
-                </UpdateModal >
+                </OkModal >
             </div>
         );
     }

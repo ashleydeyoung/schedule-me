@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-class UpdateModal extends Component {
+class OkModal extends Component {
     render() {
         return (
             <Modal
@@ -24,4 +24,4 @@ class UpdateModal extends Component {
     }
 }
 
-export default UpdateModal;
+export default OkModal;

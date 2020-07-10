@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import LinkButton from "../Button/LinkButton";
 import Mail from "../../lib/Mail";
-import Modal from "../Modal/UpdateModal";
+import OkModal from "../Modal/OkModal";
 
 class Feedback extends Component {
   state = {
@@ -77,9 +77,9 @@ class Feedback extends Component {
             </div>
           </div>
         </div>
-        <Modal show={this.state.modalShow} onHide={() => { this.setState({ modalShow: false }); window.location = '/' }}>
+        <OkModal show={this.state.modalShow} onHide={() => { this.setState({ modalShow: false }); window.location = '/' }}>
           <p>Thank you for your feedback.</p>
-        </Modal>
+        </OkModal>
       </Fragment>
     );
   }
