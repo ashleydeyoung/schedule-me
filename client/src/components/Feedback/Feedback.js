@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from "react";
 import LinkButton from "../Button/LinkButton";
-import Mail from "../../lib/Mail"
+import Mail from "../../lib/Mail";
+import OkModal from "../Modal/OkModal";
 
 class Feedback extends Component {
   state = {
     email: "",
     text: "",
+    modalShow: false
   };
 
   handleInputChange = (event) => {
@@ -20,7 +22,7 @@ class Feedback extends Component {
     event.preventDefault();
     const { email, text } = this.state;
     await Mail.feedback(email, text);
-    
+   this.setState({modalShow: true})  
   };
 
   render() {
@@ -75,6 +77,9 @@ class Feedback extends Component {
             </div>
           </div>
         </div>
+        <OkModal show={this.state.modalShow} onHide={() => { this.setState({ modalShow: false }); window.location = '/' }}>
+          <p>Thank you for your feedback.</p>
+        </OkModal>
       </Fragment>
     );
   }

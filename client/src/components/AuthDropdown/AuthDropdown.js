@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Gravatar from 'react-gravatar';
+import hasRole from '../../lib/HasRole';
 
 import AuthContext from '../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 
 class AuthDropdown extends Component {
   static contextType = AuthContext;
@@ -33,6 +35,9 @@ class AuthDropdown extends Component {
           <Gravatar className="rounded-circle" email={user.email} size={30} /> {user.email}
         </button>
         <div className={dropdownMenuClass} aria-labelledby="navbarDropdown">
+        {hasRole('admin', user?.Roles)
+          ?<Link to='/admin' onClick={this.toggleOpen} style={{color:'#000'}} > <div className='dropdown-item'>Admin</div> </Link>
+          : <Fragment/>}
           <div className="dropdown-item" onClick={this.handleLogout}>Logout</div>
         </div>
       </li>

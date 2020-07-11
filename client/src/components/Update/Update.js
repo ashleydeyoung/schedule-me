@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import LinkButton from '../Button/LinkButton';
 import Octicon, { Person, Smiley } from '@githubprimer/octicons-react';
-import UpdateModal from '../Modal/UpdateModal'
+import OkModal from '../Modal/OkModal'
 
 import API from '../../lib/API';
 
@@ -117,12 +117,12 @@ class Update extends Component {
                         </div>
                     </div>
                 </div>
-
-                <UpdateModal
+                <OkModal
                     show={this.state.updateModalShow}
                     onHide={() => { this.setState({ updateModalShow: false }); window.location = '/' }}
-                    updateUser={() => this.props.updateUser()}
-                />
+                >
+                    <p>Your information has been updated!</p>
+                </OkModal >
             </Fragment>
         );
     }
