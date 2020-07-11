@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-class UpdateModal extends Component {
+class OkModal extends Component {
     render() {
         return (
             <Modal
@@ -12,7 +12,7 @@ class UpdateModal extends Component {
                 <Modal.Header closeButton onClick={this.props.onHide}>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Your information has been updated!</p>
+                    {this.props.children}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn-primary" onClick={this.props.onHide}>
@@ -24,4 +24,4 @@ class UpdateModal extends Component {
     }
 }
 
-export default UpdateModal;
+export default OkModal;

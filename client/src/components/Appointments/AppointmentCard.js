@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
-import CenteredModal from "../Modal/Modal";
+import CancelModal from "../Modal/CancelModal";
 
 class AppointmentCard extends Component {
   state = {
@@ -30,7 +30,7 @@ class AppointmentCard extends Component {
               </button>
             </span>
           </div>
-          <CenteredModal
+          <CancelModal
             show={this.state.cancelModalShow}
             onHide={() => this.setState({ cancelModalShow: false })} 
             cancelAppointment={(e) => this.props.cancelAppointment(appointment.id, e)}

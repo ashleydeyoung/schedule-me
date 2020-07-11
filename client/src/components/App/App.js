@@ -19,6 +19,7 @@ import Schedule from '../Schedule/Schedule';
 import Appointments from '../Appointments/Appointments'
 import Services from '../Services/Services';
 import Update from '../Update/Update';
+import Admin from '../Admin/Admin';
 import Feedback from '../Feedback/Feedback';
 
 class App extends Component {
@@ -63,10 +64,12 @@ class App extends Component {
 
     API.Users.getMe(authToken)
       .then(response => response.data)
-      .then(user => this.setState(prevState => ({
-        auth: { ...prevState.auth, user },
-        newAppointment: { ...prevState.newAppointment, clientID: user.id }
-      })))
+      .then(user => {
+        this.setState(prevState => ({
+          auth: { ...prevState.auth, user },
+          newAppointment: { ...prevState.newAppointment, clientID: user.id }
+        }))
+      })
       .catch(err => console.log(err));
   }
 
@@ -83,6 +86,7 @@ class App extends Component {
               <PrivateRoute exact path='/schedule/calendar' pageProps={{ appointment: this.state.newAppointment }} page={Schedule} component={Base} />
               <PrivateRoute exact path='/schedule/services' pageProps={{ appointment: this.state.newAppointment }} page={Services} component={Base} />
               <PrivateRoute exact path='/update' pageProps={{ authToken: this.state.auth.authToken, handleLogin: this.handleLogin }} page={Update} component={Base} />
+              <PrivateRoute exact path='/admin' page={Admin} authorizedRole='admin' component={Base} />
               <PrivateRoute exact path='/feedback' page={Feedback} component={Base} />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />

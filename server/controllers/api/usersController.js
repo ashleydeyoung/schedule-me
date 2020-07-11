@@ -3,7 +3,6 @@ const usersController = require('express').Router();
 const db = require('../../models');
 const { JWTVerifier } = require('../../lib/passport');
 const jwt = require('jsonwebtoken');
-const { use } = require('passport');
 
 usersController.post('/', (req, res) => {
   const { email, password, firstName, lastName, preferredName } = req.body;
@@ -42,13 +41,36 @@ usersController.put('/:id', JWTVerifier, async function (req, res) {
   })
   req.login(result2, { session: false }, function (err) {
     if (err) throw err;
-
     res.json(result2)
   })
 });
 
+usersController.put('/:id/roles', async function (req, res) {
+    const user = await db.User.findOne({ where: { id: req.params.id }, include: [{ model:db.Role }] })
+    
+    for (let i = 0; i < user.Roles.length; i++) {
+      const role = user.Roles[i];
+      await user.removeRole(role);
+    }
+    
+    const roles = req.body.filter(role => role.value);
+
+    for (let i = 0; i < roles.length; i++) {
+      const id = roles[i].name[0];
+      const role = await db.Role.findByPk(id);
+      await user.addRole(role);
+    }
+    
+    res.json(user);
+});
+
 usersController.get('/:id', async function (req, res){
   const User = await db.User.findByPk(req.params.id, {include: [{model: db.Role}]});
+  res.json(User);
+});
+
+usersController.get('/', async function (req, res){
+  const User = await db.User.findAll({include: [{model: db.Role}]});
   res.json(User);
 });
 
