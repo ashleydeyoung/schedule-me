@@ -3,11 +3,13 @@ import TimeSlot from './TimeSlot';
 import API from '../../lib/API';
 import moment from 'moment';
 import LinkButton from '../Button/LinkButton'
+import OkModal from '../Modal/OkModal';
 
 class TimeSlotWrapper extends Component {
     state = {
         timeSlots: [],
-        dateString: ""
+        dateString: "",
+        showModal: false
     }
 
     availableState = {
@@ -67,8 +69,12 @@ class TimeSlotWrapper extends Component {
     }
 
     submit = async () => {
-        await API.Appointments.create(this.props.appointment);
-        window.location = '/appointments';
+        if(this.state.timeSlots.some(slot => slot.state.status === "Selected")) {
+            await API.Appointments.create(this.props.appointment);
+            window.location = '/appointments';
+        } else {
+            this.setState({showModal: true});
+        }
     }
 
     render() {
@@ -88,10 +94,21 @@ class TimeSlotWrapper extends Component {
                                     redirectTo="/schedule/calendar"
                                     buttonClass="btn-secondary float-left"
                                 />
-                                <button className="btn btn-default btn-primary float-right" onClick={this.submit}>Submit</button>
+                                <button
+                                    className="btn btn-default btn-primary float-right"
+                                    onClick={this.submit}
+                                >
+                                    Submit
+                                </button>
                             </div>
                         </div>
                     </div>
+                    <OkModal
+                        show={this.state.showModal}
+                        onHide={() => this.setState({showModal: false})}
+                    >
+                        <p>Select a time</p>
+                    </OkModal>
                 </Fragment>
             )
         }

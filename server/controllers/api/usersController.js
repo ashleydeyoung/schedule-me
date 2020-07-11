@@ -39,6 +39,7 @@ usersController.put('/:id', JWTVerifier, async function (req, res) {
     lastName: req.body.lastName,
     preferredName: req.body.preferredName,
   })
+
   req.login(result2, { session: false }, function (err) {
     if (err) throw err;
     res.json(result2)

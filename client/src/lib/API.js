@@ -41,7 +41,7 @@ export default {
       return axios.get('/api/users');
     }
   },
-  
+
   Appointments: {
     toDoubleDigits: (time) => time < 10 ? `0${time}` : time,
     getAvailability: async function (day) {
@@ -62,6 +62,7 @@ export default {
 
       let filledSlots = 0;
       timeSlots.forEach((timeSlot, index) => {
+
         // If we have slots waiting to be filled, use those
         if (filledSlots > 0) {
           // If there's less than 1 slot left, set it to 0
@@ -73,14 +74,15 @@ export default {
         // Determine if there are any appointments that line up with this slot
         let blockers = appointments.filter((appointment) => {
           const numberOfSlots = appointment.length / timeSlotInterval;
-          const startTimeUTC = moment(appointment.startTime).utc();
-          const timeString = `${this.toDoubleDigits(startTimeUTC.hour())}:${this.toDoubleDigits(startTimeUTC.minutes())}`;
+          const startTime = moment(appointment.startTime);
+          const timeString = `${this.toDoubleDigits(startTime.hour())}:${this.toDoubleDigits(startTime.minutes())}`;
 
           // Check if the time string is between this timeslot and the next.
           // If so, determine if we need to fill any additional timeslots
           if (timeString >= timeSlot.time
-            && timeString <= timeSlots[index + 1]?.time) {
+            && timeString < timeSlots[index + 1]?.time) {
             filledSlots = Math.floor(numberOfSlots) === 0 ? 0 : numberOfSlots - 1;
+
             return true;
           }
           return false;

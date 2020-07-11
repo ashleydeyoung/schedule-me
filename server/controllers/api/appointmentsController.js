@@ -6,13 +6,16 @@ const { Op } = require('sequelize');
 
 appointmentsController.get('/', async (req, res) => {
     if (req.query.day) {
-        res.json(await db.Appointment.findAll({
+        const appts = await db.Appointment.findAll({
             where: {
                 startTime: {
                     [Op.between]: [req.query.day, moment(req.query.day).add(1, 'day')]
                 }
             }
-        }));
+        });
+        appts.forEach(appt => appt.setDataValue('startTime',moment(appt.startTime).format()));
+
+        res.json(appts);
     } else {
         const options = { include: db.Service };
         if (req.query.clientID) {
@@ -25,6 +28,7 @@ appointmentsController.get('/', async (req, res) => {
 appointmentsController.post('/', async (req, res) => {
     const time = req.body.startTime.split(':');
     const startTime = moment(req.body.startDate).hour(time[0]).minute(time[1]);
+    console.log(startTime);
     const services = await db.Service.findAll({ where: { id: { [Op.in]: req.body.services } } });
     const length = services.reduce((duration, service) => duration + Number(service.time), 0)
     const newAppointment = await db.Appointment.create({ startTime, length});
