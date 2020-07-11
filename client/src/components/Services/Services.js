@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
-import LinkButton from "../Button/LinkButton";
 import { Form, Collapse, Checkbox } from "antd";
+
+import LinkButton from "../Button/LinkButton";
+import OkModal from "../Modal/OkModal";
+
 import "antd/dist/antd.css";
 import API from "../../lib/API";
 
@@ -10,6 +13,7 @@ class Services extends Component {
   state = {
     serviceCategories: [],
     selectedServices: new Set(),
+    modalShow: false
   };
 
   async componentDidMount() {
@@ -31,6 +35,7 @@ class Services extends Component {
       return { category, services };
     });
     this.setState({ serviceCategories });
+    this.setState(this.setSelectedServices(this.props.appointment.services));
   }
 
   onValuesChange = (changedValues, allValues) => {
@@ -38,11 +43,18 @@ class Services extends Component {
     const selected = changedValues[serviceId];
     if (selected) {
       this.state.selectedServices.add(serviceId);
+      this.setState(this.setSelectedServices([...this.state.selectedServices]));
     } else {
       this.state.selectedServices.delete(serviceId);
+      this.setState(this.setSelectedServices([...this.state.selectedServices]))
     }
     this.props.appointment.services = [...this.state.selectedServices];
   }
+
+  setSelectedServices = services =>
+    (previousState, currentProps) => {
+      return {...previousState, selectedServices: new Set(services)};
+    }
 
   render() {
     return (
@@ -89,10 +101,18 @@ class Services extends Component {
                 label="Calendar"
                 redirectTo="/schedule/calendar"
                 buttonClass="btn-primary float-right"
+                onClick={() => this.setState({modalShow: true})}
+                allowRedirect={this.state.selectedServices.size !== 0}
               />
             </div>
           </div>
         </div>
+        <OkModal
+          show={this.state.modalShow}
+          onHide={() => this.setState({modalShow: false})}
+        >
+          <p>Select a service</p>
+        </OkModal>
       </Fragment>
     );
   }
