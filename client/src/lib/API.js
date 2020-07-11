@@ -7,6 +7,10 @@ export default {
       return axios.post("/api/users/login", { email, password });
     },
 
+    setRoles: function (user, roles) {
+      return axios.put(`/api/users/${user.id}/roles`, roles);
+    },
+
     create: function (email, password, firstName, lastName, preferredName) {
       return axios.post("/api/users", {
         email,

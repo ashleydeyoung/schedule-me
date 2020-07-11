@@ -2,12 +2,14 @@ import React, { Fragment, Component } from 'react';
 import { AutoComplete, Checkbox, Form } from 'antd';
 import API from '../../lib/API';
 import hasRole from '../../lib/HasRole';
+import Modal from '../Modal/OkModal'
 
 class Admin extends Component {
     state = {
         users: null,
         roles: null,
-        roleState: null
+        roleState: null,
+        selectedUser: null
     }
 
     async componentDidMount() {
@@ -23,7 +25,12 @@ class Admin extends Component {
         const roleState = this.state.roles.map(role => {
             return { name: [role.id], value: hasRole(role.title, selectedUser.roles) }
         })
-        this.setState({ roleState });
+        this.setState({ roleState, selectedUser });
+    }
+
+    submit = async () => {
+        await API.Users.setRoles(this.state.selectedUser, this.state.roleState);
+        this.setState({showModal: true});
     }
 
     render() {
@@ -37,7 +44,14 @@ class Admin extends Component {
                             options={this.state.users}
                             onSelect={this.onSelect}
                         />
-                        <Form fields={this.state.roleState}>
+                        <Form fields={this.state.roleState} 
+                            onFieldsChange={(changedFields, allFields) => {
+                            const roleState = allFields.map(({ name, value }) => {
+                                return {name, value};
+                            });
+                            this.setState({roleState})
+                            }}
+                        >
                             {this.state.roles.map(role => {
                                 return (
                                     <Form.Item
@@ -51,7 +65,16 @@ class Admin extends Component {
                             })}
                         </Form>
                     </div>
-                    <div className='card-footer'>&nbsp;</div>
+                    <div className='card-footer'>
+                        <button className="btn btn-default btn-primary" onClick={this.submit}>Submit</button>
+                    </div>
+                    <Modal show={this.state.showModal} onHide={() => {
+                        this.setState({showModal: false});
+                        window.location='/';
+                    }}>
+                        <p>{this.state.selectedUser?.value} role updated!</p>
+                        
+                    </Modal>
                 </Fragment>
             );
         } else {
