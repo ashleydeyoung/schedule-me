@@ -18,6 +18,7 @@ class Options extends Component {
             </Link>
           </p>
           <img src="./assets/images/scissors.png" alt="logo" />
+          <Link to="/feedback" style={this.linkStyle}><p>Give us your <span className="text-primary">feedback</span></p></Link>
           {/* <p>
             <Link to="/availability" style={this.linkStyle}>
               <span className="text-success">Check</span> Availability
