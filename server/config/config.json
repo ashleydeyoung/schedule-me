@@ -4,11 +4,12 @@
     "password": "rootroot",
     "database": "schedule-me",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": false
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": "rootroot",
     "database": "schedule-me",
     "host": "127.0.0.1",
     "dialect": "mysql"

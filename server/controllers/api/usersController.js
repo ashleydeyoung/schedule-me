@@ -3,7 +3,6 @@ const usersController = require('express').Router();
 const db = require('../../models');
 const { JWTVerifier } = require('../../lib/passport');
 const jwt = require('jsonwebtoken');
-const { use } = require('passport');
 
 usersController.post('/', (req, res) => {
   const { email, password, firstName, lastName, preferredName } = req.body;
@@ -40,9 +39,9 @@ usersController.put('/:id', JWTVerifier, async function (req, res) {
     lastName: req.body.lastName,
     preferredName: req.body.preferredName,
   })
+
   req.login(result2, { session: false }, function (err) {
     if (err) throw err;
-
     res.json(result2)
   })
 });
