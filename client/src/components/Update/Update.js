@@ -95,7 +95,9 @@ class Update extends Component {
                             />
                         </div>
                         <hr />
-                        <Link to="/feedback" style={this.linkStyle}><p>Give us your <span className="text-primary">feedback</span></p></Link>
+                        <Link to="/feedback" style={this.linkStyle}>
+                            <p>Give us your <span className="text-primary">feedback</span></p>
+                        </Link>
                         <img src="./assets/images/scissors.png" alt="logo" />
                     </form>
                 </div>
