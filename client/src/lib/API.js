@@ -115,6 +115,14 @@ export default {
         },
       });
     },
+
+    createService: function (service) {
+      return axios.post(`/api/services/`, service);
+    },
+
+    removeService: function (service) {
+      return axios.delete(`/api/services/${service.id}`);
+    }
   },
 
   Roles: {
@@ -127,6 +135,7 @@ export default {
     getHours: async function() {
       return (await axios.get('/api/businesssettings/hours')).data;
     },
+
     updateSetting: async function(setting) {
       return (await axios.put(`/api/businesssettings/${setting.id}`, setting)).data;
     }
