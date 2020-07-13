@@ -7,7 +7,7 @@ mailController.post("/feedback", async (req, res) => {
   const mail = {
     from: "info.scheduleme@gmail.com",
     to: "info.scheduleme@gmail.com",
-    subject: "Feedback Form",
+    subject: "Schedule-me Feedback Form",
     html: `<p>Email: ${req.body.email}</p><p>Feedback: ${req.body.text}</p>`,
   };
   try {
