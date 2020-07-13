@@ -39,6 +39,33 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },
+    {
+      firstName: "Stephanie",
+      lastName: "Smith",
+      preferredName: "Steph",
+      email: "test1@gmail.com",
+      password: "abc123",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      firstName: "Lilly",
+      lastName: "Lang",
+      preferredName: "Lilly",
+      email: "test2@gmail.com",
+      password: "abc123",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      firstName: "Mike",
+      lastName: "McCormick",
+      preferredName: "Mike",
+      email: "test3@gmail.com",
+      password: "abc123",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
   ])
   },
 
