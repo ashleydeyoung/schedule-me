@@ -40,6 +40,15 @@ module.exports = {
       updatedAt: new Date()
     },
     {
+      firstName: 'Admin',
+      lastName: '',
+      preferredName: 'Admin',
+      email: 'info.scheduleme@gmail.com',
+      password: "admin",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
       firstName: "Stephanie",
       lastName: "Smith",
       preferredName: "Steph",
