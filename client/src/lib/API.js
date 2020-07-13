@@ -45,9 +45,12 @@ export default {
   Appointments: {
     toDoubleDigits: (time) => time < 10 ? `0${time}` : time,
     getAvailability: async function (day) {
-      const open = 9;
-      const close = 17;
-      const timeSlotInterval = 60;
+      const hours = (await axios.get('/api/businesssettings/hours')).data;
+      const openTimeStringParts = hours.filter(hour => hour.name === "OpenTime")[0].value.split(':');
+      const closeTimeStringParts = hours.filter(hour => hour.name === "CloseTime")[0].value.split(':');
+      const open = Number(openTimeStringParts[0]) + Number(openTimeStringParts[1])/60;
+      const close = Number(closeTimeStringParts[0]) + Number(closeTimeStringParts[1])/60;
+      const timeSlotInterval = 30;
       const timeSlots = [];
 
       // Generate timeslots from open to close
@@ -112,11 +115,29 @@ export default {
         },
       });
     },
+
+    createService: function (service) {
+      return axios.post(`/api/services/`, service);
+    },
+
+    removeService: function (service) {
+      return axios.delete(`/api/services/${service.id}`);
+    }
   },
 
   Roles: {
     getAll: function() {
       return axios.get('/api/roles');
+    }
+  },
+
+  BusinessSettings: {
+    getHours: async function() {
+      return (await axios.get('/api/businesssettings/hours')).data;
+    },
+
+    updateSetting: async function(setting) {
+      return (await axios.put(`/api/businesssettings/${setting.id}`, setting)).data;
     }
   }
 };
