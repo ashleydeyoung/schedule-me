@@ -13,15 +13,6 @@ module.exports = {
       updatedAt: new Date()
     }
     ]);
-    await queryInterface.bulkInsert('Users', [{
-      firstName: 'Admin',
-      lastName: '',
-      preferredName: 'Admin',
-      email: 'info.scheduleme@gmail.com',
-      password: "admin",
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }]);
     await queryInterface.bulkInsert('UserRoles', [{
       createdAt: new Date(),
       updatedAt: new Date(),
