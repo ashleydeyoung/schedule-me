@@ -9,7 +9,10 @@ class TimeSlotWrapper extends Component {
     state = {
         timeSlots: [],
         dateString: "",
-        showModal: false
+        showModal: false,
+        showUnavailableModal: false,
+        openTime: null,
+        closeTime: null
     }
 
     availableState = {
@@ -38,14 +41,14 @@ class TimeSlotWrapper extends Component {
 
     async componentDidMount() {
         const dateString = moment(this.props.appointment.startDate).format('yyyy-MM-DD');
-        const timeSlots = await API.Appointments.getAvailability(dateString);
+        const {timeSlots, timeSlotInterval}  = await API.Appointments.getAvailability(dateString);
         this.setAvailibility(timeSlots);
         timeSlots.forEach(timeSlot => {
             if(timeSlot.time === this.props.appointment.startTime){
                 timeSlot.state = this.selectedState;
             }
         })
-        this.setState({ timeSlots, dateString });
+        this.setState({ timeSlots, dateString, timeSlotInterval });
     }
 
     setAvailibility(timeSlots) {
@@ -61,6 +64,19 @@ class TimeSlotWrapper extends Component {
     onClick = (clickedSlot) => {
         const timeSlots = this.state.timeSlots;
         this.setAvailibility(timeSlots);
+
+        const endTime = moment(`1900-01-01 ${clickedSlot.time.split(":")[0]}:${clickedSlot.time.split(":")[1]}`).add(this.props.appointment.length, "minute").format("HH:mm");
+        const closeTimeParts = timeSlots[timeSlots.length-1].time.split(":");
+        const closeTime = moment(`1900-01-01 ${closeTimeParts[0]}:${closeTimeParts[1]}`).format("HH:mm");
+
+        const unavailable = timeSlots.filter(timeSlot => !timeSlot.isAvailable && (timeSlot.time >= clickedSlot.time && timeSlot.time < endTime));
+
+        if(endTime > closeTime
+            || unavailable.length) {
+            this.setState({showUnavailableModal: true});
+            return;
+        }
+
         if(clickedSlot.isAvailable){
             clickedSlot.state = this.selectedState;
         }
@@ -82,7 +98,9 @@ class TimeSlotWrapper extends Component {
             return (
                 <Fragment>
                     <div className="card-body">
-                        <h6>Below are the available time slots for <br />{this.state.dateString}.</h6><br />
+                        <h6>Below are the available time slots for
+                            <br />{moment(this.props.appointment.startDate).format("dddd, MM-DD-yyyy")}
+                        </h6><br />
                         {this.state.timeSlots.map(timeSlot => (<TimeSlot timeSlot={timeSlot}
                             onClick={this.onClick} key={timeSlot.time} />))}
                     </div>
@@ -108,6 +126,13 @@ class TimeSlotWrapper extends Component {
                         onHide={() => this.setState({showModal: false})}
                     >
                         <p>Select a time</p>
+                    </OkModal>
+                    <OkModal
+                        show={this.state.showUnavailableModal}
+                        onHide={() => this.setState({showUnavailableModal: false})}
+                    >
+                        <p>The requested service takes longer than the allotted time.</p>
+                        <p>Please select another available time.</p>
                     </OkModal>
                 </Fragment>
             )

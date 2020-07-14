@@ -96,7 +96,7 @@ export default {
         }
       });
 
-      return timeSlots;
+      return {timeSlots, timeSlotInterval};
     },
     create: (appointment) => axios.post('/api/appointments', appointment),
     getByClientId: function (clientID) {

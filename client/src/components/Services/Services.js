@@ -13,7 +13,8 @@ class Services extends Component {
   state = {
     serviceCategories: [],
     selectedServices: new Set(),
-    modalShow: false
+    modalShow: false,
+    services: null
   };
 
   async componentDidMount() {
@@ -34,18 +35,21 @@ class Services extends Component {
       );
       return { category, services };
     });
-    this.setState({ serviceCategories });
+    this.setState({ serviceCategories, services: response.data });
     this.setState(this.setSelectedServices(this.props.appointment.services));
   }
 
   onValuesChange = (changedValues, allValues) => {
     const serviceId = Object.keys(changedValues)[0];
     const selected = changedValues[serviceId];
+    const serviceLength = Number(this.state.services.filter(service => service.id.toString() === serviceId)[0].time);
     if (selected) {
       this.state.selectedServices.add(serviceId);
+      this.props.appointment.length += serviceLength;
       this.setState(this.setSelectedServices([...this.state.selectedServices]));
     } else {
       this.state.selectedServices.delete(serviceId);
+      this.props.appointment.length -= serviceLength;
       this.setState(this.setSelectedServices([...this.state.selectedServices]))
     }
     this.props.appointment.services = [...this.state.selectedServices];

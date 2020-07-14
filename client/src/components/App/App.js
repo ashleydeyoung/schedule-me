@@ -53,7 +53,8 @@ class App extends Component {
         startDate: null,
         services: [],
         startTime: null,
-        clientID: null
+        clientID: null,
+        length: 0
       }
     }
   }
