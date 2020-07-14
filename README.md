@@ -1,10 +1,11 @@
 # Schedule-Me
-![FullStack](https://user-images.githubusercontent.com/61035701/84943225-1028d480-b0b2-11ea-8742-e49bc271dcfc.png) ![Travis](https://img.shields.io/travis/com/ashleydeyoung/schedule-me?logo=travis)<br>
+![FullStack](https://user-images.githubusercontent.com/61035701/84943225-1028d480-b0b2-11ea-8742-e49bc271dcfc.png) 
+![GitHub contributors](https://img.shields.io/github/contributors/ashleydeyoung/schedule-me)<br>
 A simple scheduling application using learned subject matter from a Full Stack Developer bootcamp.
 
 ## User Story
 ```
-AS A user,
+AS A salon owner,
 I WANT a scheduler application,
 SO THAT I can better accommodate  the needs of clients.
 ```
@@ -68,5 +69,5 @@ The following APIs were used in the development of this assignment.
 ![ScheduleMe](https://user-images.githubusercontent.com/61035701/87250717-d9d24100-c434-11ea-95db-dadc55699b99.png)
 
 ## Deployed Application
-<a href="#">Schedule-Me</a>
+<a href="https://scheduleme-mobile.herokuapp.com/">Schedule-Me</a>
 
