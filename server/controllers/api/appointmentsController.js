@@ -1,5 +1,6 @@
 const appointmentsController = require('express').Router();
-const moment = require('moment');
+const moment = require('moment-timezone');
+
 
 const db = require('../../models');
 const { Op } = require('sequelize');
@@ -27,8 +28,8 @@ appointmentsController.get('/', async (req, res) => {
 
 appointmentsController.post('/', async (req, res) => {
     const time = req.body.startTime.split(':');
-    const startTime = moment(req.body.startDate).hour(time[0]).minute(time[1]);
-    console.log(startTime);
+
+    const startTime = moment(req.body.startDate).tz("America/New_York").hour(time[0]).minute(time[1]);
     const services = await db.Service.findAll({ where: { id: { [Op.in]: req.body.services } } });
     const length = services.reduce((duration, service) => duration + Number(service.time), 0)
     const newAppointment = await db.Appointment.create({ startTime, length});
