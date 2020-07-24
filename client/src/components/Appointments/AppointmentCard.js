@@ -34,7 +34,11 @@ class AppointmentCard extends Component {
             show={this.state.cancelModalShow}
             onHide={() => this.setState({ cancelModalShow: false })} 
             cancelAppointment={(e) => this.props.cancelAppointment(appointment.id, e)}
-          />
+            title={`Confirm cancel?`}
+          >
+            <p>Are you sure you would like to cancel this appointment?</p>
+          </CancelModal>
+          
         </div>
       );
     });
