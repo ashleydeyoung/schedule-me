@@ -10,6 +10,9 @@ class OkModal extends Component {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
                 <Modal.Header closeButton onClick={this.props.onHide}>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    {this.props.title}
+                </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {this.props.children}

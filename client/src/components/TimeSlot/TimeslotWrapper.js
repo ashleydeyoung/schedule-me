@@ -11,6 +11,7 @@ class TimeSlotWrapper extends Component {
         dateString: "",
         showModal: false,
         showUnavailableModal: false,
+        showAppointmentAddedModal: false,
         openTime: null,
         closeTime: null
     }
@@ -87,7 +88,7 @@ class TimeSlotWrapper extends Component {
     submit = async () => {
         if(this.state.timeSlots.some(slot => slot.state.status === "Selected")) {
             await API.Appointments.create(this.props.appointment);
-            window.location = '/appointments';
+            this.setState({showAppointmentAddedModal: true});
         } else {
             this.setState({showModal: true});
         }
@@ -134,6 +135,13 @@ class TimeSlotWrapper extends Component {
                         <p>The requested service takes longer than the allotted time.</p>
                         <p>Please select another available time.</p>
                     </OkModal>
+                    <OkModal
+                        show={this.state.showAppointmentAddedModal}
+                        title={`Success!`}
+                        onHide={() => { this.setState({ showAppointmentAddedModal: false }); window.location = '/appointments' }}
+                    >
+                        <p>Your appointment has been scheduled!</p>
+                    </OkModal >
                 </Fragment>
             )
         }
